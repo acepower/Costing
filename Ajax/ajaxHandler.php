@@ -10,7 +10,7 @@ include realpath(dirname(__DIR__)).'\\Classes\\Model\\AdminModel.php';
 include realpath(dirname(__DIR__)).'\\Classes\\SqlQueries.php';
 include realpath(dirname(__DIR__)).'\\Classes\\Databasehandler.php';
 if (isset($_POST['searchInput']) && !empty($_POST['searchInput'])) {
-    $databaseConnection = new databasehandler();
+    $databaseConnection = new Databasehandler();
     $databaseConnection->connect();
     $field = $_POST['searchID'];
     $value = $_POST['searchInput'];
@@ -24,7 +24,7 @@ if (isset($_POST['searchInput']) && !empty($_POST['searchInput'])) {
     $tempArray['field'] = $sanitizedSearchField;
     $tempArray['value'] = $sanitizedSearchInput;
 
-    $adminQuery = sqlQueries::searchOrders();
+    $adminQuery = SqlQueries::searchOrders();
     $databaseConnection->safeQuery($adminQuery, $tempArray);
     $result = $databaseConnection->safeFetchAll();
 
