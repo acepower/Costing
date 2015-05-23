@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: kostas
  * Date: 26-Aug-14
  * Time: 5:47 PM
  */
-
-class homeView extends WebTemplate
+class HomeView extends WebTemplate
 {
     public function __construct()
     {
@@ -15,8 +15,7 @@ class homeView extends WebTemplate
 
     public function createHomePage()
     {
-        if(isset($_GET['errorType']))
-        {
+        if (isset($_GET['errorType'])) {
             $this->displayErrors($_GET['errorType']);
         }
         $this->pageContent = <<< HTML
@@ -40,21 +39,17 @@ class homeView extends WebTemplate
         </div>
     </div>
 HTML;
-
-
         $this->createPage();
 
         return $this->htmlOutput;
     }
+
     public function displayErrors($errorMessages)
     {
-
-        $this->messages.= <<< HTML
+        $this->messages .= <<< HTML
         <div id="errors" class="alert-warning" style="font-size: 17px;">$errorMessages</div>
 
 HTML;
-
         echo $this->messages;
     }
-
 }
