@@ -6,9 +6,9 @@
  * Time: 3:37 PM
  */
 
-include realpath(dirname(__DIR__)).'\\Classes\\Model\\adminModel.php';
-include realpath(dirname(__DIR__)).'\\Classes\\sqlQueries.php';
-include realpath(dirname(__DIR__)).'\\Classes\\databasehandler.php';
+include realpath(dirname(__DIR__)).'\\Classes\\Model\\AdminModel.php';
+include realpath(dirname(__DIR__)).'\\Classes\\SqlQueries.php';
+include realpath(dirname(__DIR__)).'\\Classes\\Databasehandler.php';
 if (isset($_POST['searchInput']) && !empty($_POST['searchInput'])) {
     $databaseConnection = new databasehandler();
     $databaseConnection->connect();
