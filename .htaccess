@@ -1,0 +1,7 @@
+ReWriteEngine On
+ReWriteRule ^public/ - [L,NC]
+ReWriteRule ^ajax/ - [L,NC]
+ReWriteBase /Costing/
+RewriteCond %(REQUEST_FILENAME) !-f
+RewriteCond %(REQUEST_FILENAME) !-d
+RewriteRule ^(.+)$ index.php?uri=$1 [QSA,L]

@@ -1,0 +1,45 @@
+.footer
+{
+    position:absolute;
+    bottom:0;
+    width:100%;
+
+
+}
+.custom-form
+{
+    padding:5px;
+}
+
+.header
+{
+    background-color: #144955;
+}
+
+.panel-footer
+{
+    background-color: #144955;
+}
+
+.panel-body
+{
+    background-color: #F4F1E0;
+}
+
+.panel-heading
+{
+    text-align: center;
+    font-size: x-large;
+}
+
+.warning
+{
+
+    outline: 1px outset red;
+
+}
+
+.success
+{
+    outline: 1px outset greenyellow;
+}
