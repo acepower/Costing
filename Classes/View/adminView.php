@@ -1,12 +1,12 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: kostas
  * Date: 11-Sep-14
  * Time: 1:58 AM
  */
-
-class adminView extends WebTemplate
+class AdminView extends WebTemplate
 {
     private $nonAdminUsers;
     private $searchResults;
@@ -15,29 +15,26 @@ class adminView extends WebTemplate
 
     public function __construct($results = null)
     {
-
         parent::__construct();
-
-        if($results!=null)
-        {
-            $this->searchResults=$results;
+        if ($results != null) {
+            $this->searchResults = $results;
         }
-
     }
 
-    public function __destruct(){}
+    public function __destruct()
+    {
+    }
 
     public function createAdminPage($users = null, $constants, $sellers)
     {
-
         $this->constants = json_encode($constants);
         $this->sellers = json_encode($sellers);
-        if($users!=null)
-            $this->nonAdminUsers=json_encode($users);
-        else
-            $this->nonAdminUsers=0;
-        if(isset($_GET['errorType']))
-        {
+        if ($users != null) {
+            $this->nonAdminUsers = json_encode($users);
+        } else {
+            $this->nonAdminUsers = 0;
+        }
+        if (isset($_GET['errorType'])) {
             $this->displayErrors($_GET['errorType']);
         }
         $this->pageContent = <<< HTML
@@ -218,20 +215,17 @@ class adminView extends WebTemplate
         </script>
 
 HTML;
-
-
         $this->createPage();
 
         return $this->htmlOutput;
-
     }
+
     public function displayErrors($errorMessages)
     {
-
-        $this->messages.= <<< HTML
+        $this->messages .= <<< HTML
         <div id="errors" class="alert-warning" style="font-size: 17px;">$errorMessages</div>
 
 HTML;
-            echo $this->messages;
+        echo $this->messages;
     }
 }
