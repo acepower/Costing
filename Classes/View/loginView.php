@@ -38,7 +38,7 @@ class loginView extends WebTemplate
                     </div>
                       <button type="submit" class="btn btn-default">Submit</button>
                  </form>
-                 <form class="cold-md-4" action="/Costing/home" method="get">
+                 <form class="cold-md-4" action="/Costing/" method="get">
                      <button type="submit" class="btn btn-danger">Back</button>
                 </form>
                 <form class="cold-md-4" action="/Costing/register" method="get">

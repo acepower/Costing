@@ -8,14 +8,13 @@
 
 class homeController
 {
-    public function __construct(){
+    public function __construct($f3){
         session_start();
+
 
         if(sessionClass::get('Username')!= false)
         {
-
-            header ('Location: /Costing/invoicing');
-            exit();
+            $f3->reroute('/invoicing');
         }
         else
         {

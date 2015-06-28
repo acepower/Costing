@@ -12,19 +12,19 @@ class loginController{
     private $validator_message;
     private $credentials = array();
     private $loginPage;
+    private $f3;
 
-    public function __construct()
+    public function __construct($f3)
     {
+        $this->f3=$f3;
         session_start();
         unset($_SESSION);
         session_destroy();
 
         $this->loginPage= new loginView();
         $this->validator_message="";
-        if (isset($_POST["Credentials"]))
+        if ($f3->exists('POST.Credentials'))
             $this->handleLoginData();
-
-
     }
     public function __destruct(){}
 
@@ -69,7 +69,7 @@ class loginController{
             if(sessionClass::get('Username')!= false)
             {
 
-               header ('Location: /Costing/invoicing');
+                $this->f3->reroute('/invoicing');
                 exit();
             }
             else

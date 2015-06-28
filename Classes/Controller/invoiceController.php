@@ -16,34 +16,26 @@ class invoiceController{
         session_start();
         session_regenerate_id();
         $this->postData= array();
-        if(sessionClass::get('Username')==false)
-        {
-            header('Location: /Costing/login');
+        if(sessionClass::get('Username')==false) {
+            header('Location: /CostingRev/login');
             exit();
         }
-        if(isset($_POST["invoice"]))
-        {
+        if(isset($_POST["invoice"])) {
             if($this->validatePostData()) {
                 $this->organizePostData();
             }
-
         }
     }
 
-    public function displayPage()
-    {
-
+    public function displayPage(){
         $this->invoicePage = new invoiceView();
         $this->invoicePage = $this->invoicePage->displayInvoicePage();
-
-
         echo $this->invoicePage;
     }
-    private function validatePostData()
-    {
+
+    private function validatePostData(){
         $flag = true;
         $piecesQuantity = array("Pieces1" => 1, "Pieces2" => 2, "Pieces3"=>3,"Pieces4"=>4,"Shoddy"=>5);
-
 
         if(!array_key_exists("Quantity1",$_POST))
         {

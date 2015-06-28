@@ -16,7 +16,7 @@ class adminController
         session_start();
         if(sessionClass::get('Username')== false || loginModel::checkAdmin()== false)
         {
-            header('Location: /Costing/login');
+            header('Location: /CostingRev/login');
             exit();
         }
 
