@@ -10,22 +10,10 @@ class HomeController
 {
     public function __construct($f3){
         session_start();
-
-
-        if(sessionClass::get('Username')!= false)
-        {
+        if(sessionClass::get('Username')!= false) {
             $f3->reroute('/invoicing');
         }
-        else
-        {
-=======
-    public function __construct()
-    {
-        session_start();
-        if (sessionClass::get('Username') != false) {
-            header('Location: /Costing/invoicing');
-            exit();
-        } else {
+        else {
             unset($_SESSION);
             session_destroy();
         }

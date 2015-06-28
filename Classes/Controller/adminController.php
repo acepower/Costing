@@ -10,19 +10,12 @@ class AdminController
 {
     private $postData;
 
-    public function __construct()
+    public function __construct($f3)
     {
         $this->postData = array();
         session_start();
-<<<<<<< HEAD
-        if(sessionClass::get('Username')== false || loginModel::checkAdmin()== false)
-        {
-            header('Location: /CostingRev/login');
-=======
-        if (sessionClass::get('Username') == false || LoginModel::checkAdmin() == false) {
-            header('Location: /Costing/login');
->>>>>>> 747582a6cc0666b7bfa1c166e7d4ac3b3b5ed920
-            exit();
+        if(sessionClass::get('Username')== false || loginModel::checkAdmin()== false) {
+            $f3->reroute('/login');
         }
         if (($_POST)) {
             $this->handlePostData();

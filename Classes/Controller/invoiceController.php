@@ -12,21 +12,13 @@ class InvoiceController
     private $invoicePage;
     private $postData;
 
-    public function __construct()
+    public function __construct($f3)
     {
         session_start();
         session_regenerate_id();
-        $this->postData= array();
-        if(sessionClass::get('Username')==false) {
-            header('Location: /CostingRev/login');
-            exit();
-        }
-        if(isset($_POST["invoice"])) {
-            if($this->validatePostData()) {
-=======
         $this->postData = array();
         if (sessionClass::get('Username') == false) {
-            header('Location: /Costing/login');
+            $f3->reroute('/login');
             exit();
         }
         if (isset($_POST["invoice"])) {
@@ -37,26 +29,13 @@ class InvoiceController
     }
 
     public function displayPage(){
-        $this->invoicePage = new invoiceView();
-=======
-    public function displayPage()
-    {
         $this->invoicePage = new InvoiceView();
         $this->invoicePage = $this->invoicePage->displayInvoicePage();
         echo $this->invoicePage;
     }
 
     private function validatePostData(){
-        $flag = true;
-        $piecesQuantity = array("Pieces1" => 1, "Pieces2" => 2, "Pieces3"=>3,"Pieces4"=>4,"Shoddy"=>5);
 
-        if(!array_key_exists("Quantity1",$_POST))
-        {
-            $flag=false;
-            $error=" You need to at least select 1 material";
-=======
-    private function validatePostData()
-    {
         $flag = true;
         $piecesQuantity = array("Pieces1" => 1, "Pieces2" => 2, "Pieces3" => 3, "Pieces4" => 4, "Shoddy" => 5);
         if (!array_key_exists("Quantity1", $_POST)) {
