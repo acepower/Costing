@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: kostas
  * Date: 28-Aug-14
  * Time: 4:27 PM
  */
-
 class RegisterView extends WebTemplate
 {
 
@@ -17,11 +17,9 @@ class RegisterView extends WebTemplate
 
     public function createRegisterPage()
     {
-        if(isset($_GET['errorType']))
-        {
+        if (isset($_GET['errorType'])) {
             $this->displayErrors($_GET['errorType']);
         }
-
         $this->pageContent = <<< HTML
 
 
@@ -61,28 +59,28 @@ class RegisterView extends WebTemplate
 
     </div>
 HTML;
-
         $this->createPage();
 
         return $this->htmlOutput;
     }
+
     public function displayErrors($errorMessages)
     {
-
-        $this->messages.= <<< HTML
+        $this->messages .= <<< HTML
         <div id="errors" class="alert-warning" style="font-size: 17px;">$errorMessages</div>
 
 HTML;
+
         return $this->messages;
     }
+
     public function displaySuccess($successMessage)
     {
-        $this->messages.= <<< HTML
+        $this->messages .= <<< HTML
         <div id="errors" class="alert-success" style="font-size: 17px;">$successMessage</div>
 
 HTML;
 
         return $this->messages;
     }
-
 }

@@ -1,25 +1,21 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: kostas
  * Date: 03-Sep-14
  * Time: 4:15 PM
  */
-
-class invoiceView extends WebTemplate
+class InvoiceView extends WebTemplate
 {
     public function __construct()
     {
         parent::__construct();
-
-
     }
 
     public function displayInvoicePage()
     {
-
-        if(isset($_GET['errorType']))
-        {
+        if (isset($_GET['errorType'])) {
             $this->displayErrors($_GET['errorType']);
         }
         $this->pageContent = <<< HTML
@@ -164,20 +160,19 @@ HTML;
 
     public function displayErrors($errorMessages)
     {
-
-        $this->messages.= <<< HTML
+        $this->messages .= <<< HTML
         <div id="errors" class="alert-warning" style="font-size: 17px;">$errorMessages</div>
 
 HTML;
         echo $this->messages;
     }
+
     public function displaySuccess($successMessage)
     {
-        $this->messages.= <<< HTML
+        $this->messages .= <<< HTML
         <div id="errors" class="alert-success" style="font-size: 17px;">$successMessage</div>
 
 HTML;
-
         echo $this->messages;
     }
 }
