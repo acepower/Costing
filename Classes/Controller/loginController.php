@@ -9,22 +9,25 @@
 class loginController{
 
 
-    private $validator_message;
+
     private $credentials = array();
     private $loginPage;
     private $m_f3;
 
-    public function __construct($f3)
+    public function __construct($f3,$validationError)
     {
-        $this->m_f3 = $f3;
         session_start();
+        $this->loginPage= new loginView();
+        $this->m_f3 = $f3;
+
+        if ($this->m_f3->exists('POST.Credentials')) {
+            $this->handleLoginData();
+        }
+        if(isset($_SESSION['ValidationError'])){
+            $this->displayErrors($_SESSION['ValidationError']);
+        }
         unset($_SESSION);
         session_destroy();
-
-        $this->loginPage= new loginView();
-        $this->validator_message="";
-        if ($f3->exists('POST.Credentials'))
-            $this->handleLoginData();
     }
     public function __destruct(){}
 
@@ -35,6 +38,7 @@ class loginController{
     }
     public function displayErrors($errorMessage)
     {
+        session_unset();
         $errors= $this->loginPage->displayErrors($errorMessage);
 
         echo $errors;
@@ -42,21 +46,13 @@ class loginController{
 
     private function handleLoginData()
     {
-        foreach($_POST as $key=> $data)
-        {
-            if ($key != "Credentials")
+
+        foreach($_POST as $key=> $data) {
+            if ($key != "Credentials") {
                 $this->credentials[$key] = $data;
+            }
         }
-
-        if(!ctype_alnum($this->credentials['Username']))
-            $this->validator_message.= " Username can only contain alphanumeric characters. </br> ";
-        else if (strlen($this->credentials['Username'])>20 || strlen($this->credentials['Username'])<5)
-            $this->validator_message .= " Username cannot be more than 20 characters and less than 5. </br> ";
-        if(strlen($this->credentials['Password'])>20 || strlen($this->credentials['Password'])<5)
-            $this->validator_message.= " Password cannot be more than 20 characters and less than 5. </br> ";
-
-        if ($this->validator_message=="")
-        {
+        if(funcValidator::validateString($this->m_f3,$this->credentials['Username']) && funcValidator::validateString($this->m_f3,$this->credentials['Password'])){
             $sanitized_credentials= array();
             $sanitized_credentials['Username']=filter_var($this->credentials['Username'],FILTER_SANITIZE_STRING);
             $sanitized_credentials['Password']=filter_var($this->credentials['Password'],FILTER_SANITIZE_STRING);
@@ -65,15 +61,11 @@ class loginController{
             $User->loginAttempt();
             if(sessionClass::get('Username')!= false) {
                 $this->m_f3->reroute('/invoicing');
-                exit();
-            }
-            else {
-                $this->validator_message.="Invalid log in credentials";
-                $this->displayErrors($this->validator_message);
             }
         }
-        else {
-            $this->displayErrors($this->validator_message);
+        else{
+            sessionClass::set('ValidationError',$this->m_f3->get('ValidationError'));
+            $this->m_f3->reroute('/login?');
         }
 
     }

@@ -9,7 +9,7 @@ config::define();
 
 function myAutoloader($className){
     $fileName = $className.".php";
-    $fileDirectories = array("classes","classes/model","classes/view","classes/controller");
+    $fileDirectories = array("classes","classes/functions","classes/model","classes/view","classes/controller");
     foreach ($fileDirectories as $directory){
         $fileNamePath = DOC_ROOT.DIR_SEP.$directory.DIR_SEP.$fileName;
         if(file_exists($fileNamePath)) require_once $fileNamePath;
