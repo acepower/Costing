@@ -21,118 +21,96 @@ class InvoiceView extends WebTemplate
         $this->pageContent = <<< HTML
 
         <div class="panel panel-default">
-             <div class="panel-heading" >Δελτίο κοστολόγησης</div>
+             <div class="panel-heading" ><h3>Order Information</h3></div>
                 <div class="panel-body">
                  <form id="orderCreation" class="form-horizontal " role="form" action="/Costing/invoicing" method="post">
                  <input type="hidden" name="invoice" value="postAttempt">
                     <div class="col-md-2">
-                     <label class="page-header" style="font-size: large"> Πληροφοριες παραγγελίας</label>
                         <div class="form-group   custom-form" id="Invoicing">
-                            <label>Πωλητής</label>
-                                <select name="Seller" class="form-control form-horizontal input-sm">
-                                <option selected="selected" value="Eksarxos"> Έξαρχος 1</option>
-                                <option value="2">Έξαρχος 2</option>
-                                <option value="3">Έξαρχος 3</option>
-                                <option value="4">Έξαρχος 4</option>
-                                <option value="5">Έξαρχος 5</option>
-                                <option value="6">Έξαρχος 6</option>
+                            <label>Salesperson</label>
+                                 <input type="text" name="Seller" class="form-control input-sm ">
                             </select>
                         </div>
                         <div class="form-group custom-form">
-                             <label>Πελατης</label>
+                             <label>Customer name</label>
                                   <input type="text" name="Customer" class="form-control input-sm ">
                         </div>
                         <div class="form-group custom-form">
-                             <label>Προϊόν</label>
-                                  <input type="text" name="Product" class="form-control input-sm">
+                             <label>Product</label>
+                                <input type="text" name="Product" class="form-control input-sm">
                         </div>
                     </div>
 
-                    <div class="col-md-1">
-                    <label class="page-header" style="font-size: large">Προϊόν</label>
-                     <div class="form-group custom-form">
-                         <label>Αριθμός τεμαχίων</label>
-                             <input type="text" name="Pieces1" class="form-control input-sm">
-                             <input type="text" name="Pieces2" class="form-control input-sm">
-                             <input type="text" name="Pieces3" class="form-control input-sm">
-                             <input type="text" name="Pieces4" class="form-control input-sm">
-                     </div>
-                      <div class="form-group custom-form">
-                         <label>Ποσότητα Υλικών</label>
-                            <select id="materialAmount"  name="materialAmount" class="form-control form-horizontal input-sm">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option  selected="selected"  value="6">6</option>
-                            </select>
-                     </div>
-                     <div class="form-group custom-form">
-                         <label>Σκάρτα</label>
-                            <input type="text" name="Shoddy" class="form-control input-sm">
-                     </div>
-                    </div>
-                    <div class="col-md-1" style=" margin-left: 20px; margin-right:20px;">
-                        <label class="page-header" style="font-size: large">Κόλληση</label>
-                            <div class="form-group custom-form">
-                                <label>Λεπτά ανα τεμάχιο</label>
-                                <input type="text" name="GluingMinutesPerPiece" class="form-control input-sm">
-                             </div>
-
-                    </div>
-                    <div class="col-md-1" style=" margin-left: 20px;">
-                        <label class="page-header" style="font-size: large">Άλλα</label>
-                            <div class="form-group custom-form">
-                                <label>Ωρες σχεδιασμού</label>
-                                <input type="text" name="DesignHours" class="form-control col-md-1 input-sm">
+                    <div class="col-md-4">
+                            <div class="form-group custom-form" style="margin-left: 2px;">
+                                <label style="margin-left: 15px;">Amount of product pieces to calculate the cost for</label>
+                                    <div class="col-md-6" style="margin:inherit">
+                                        <input type="text" name="Pieces1" class="form-control input-sm">
+                                        <input type="text" name="Pieces2" class="form-control input-sm" style="margin-top:4px;">
+                                     </div>
+                                    <div class="col-md-6" style="margin:inherit; margin-left: 2px;">
+                                        <input type="text" name="Pieces3" class="form-control input-sm">
+                                        <input type="text" name="Pieces4" class="form-control input-sm" style="margin-top:4px;">
+                                    </div>
                             </div>
-                            <div class="form-group custom-form">
-                                <label>Λειτουργικές ώρες</label>
-                                <input type="text" name="RunHours" class="form-control input-sm">
-                            </div>
-                            <div class="form-group custom-form">
-                                <label>Μέτρα κόλλας</label>
-                                <input type="text" name="GlueMeters" class="form-control input-sm">
-                            </div>
-                    </div>
-
-                    <div class="col-md-1" style=" margin-left: 20px; margin-right:20px;">
-                        <label class="page-header" style="font-size: large"> <input type="checkbox" id="bagging" class="checkbox-inline"> Σακούλα</label>
-                            <div class="form-group custom-form">
-                                <label>Μέτρα Σακούλας</label>
-                                <input type="text" id="baggingLength" name="baggingLength" class="form-control input-sm">
-                            </div>
-                    </div>
-                    <div class="col-md-1" style=" margin-left: 20px; margin-right:20px;">
-                        <label class="page-header" style="font-size: large">
-                            <input type="checkbox" id="boxing"  class="checkbox-inline"> Κιβώτιο </label>
-                            <div class="form-group custom-form">
-                                <label>Τιμή</label>
-                                <input type="text" id="boxingPrice" name="boxingPrice" class="form-control input-sm">
-                            </div>
-                    </div>
-                    <div class="col-md-1" style=" margin-left: 20px; margin-right:20px;">
-                        <label class="page-header" style="font-size: large"> Μεταφορικά </label>
-                            <div class="form-group custom-form">
-                                <label>Τεμάχια/παλέτα</label>
-                                <input type="text" name="PiecesPerPallet" class="form-control input-sm">
-                            </div>
-                            <div class="form-group custom-form">
-                                <label><input type="checkbox" id="Pallet" class="checkbox-inline"> Κόστος παλέτας </label>
-                                <input type="text" name="PalletCost" id="PalletCost" class="form-control input-sm">
-                            </div>
-                            <div class="form-group custom-form">
-                                <label>Κόστος παλέτας </label>
-                                    <select name="PalletCostDropdown" id="PalletCostDropdown" class="form-control form-horizontal input-sm">
-                                        <option selected="selected" value="15">15€</option>
+                         <div class="col-md-6" style="margin: inherit; padding: inherit">
+                            <div class="form-group custom-form" style="margin: inherit;">
+                                <label>Order material amount</label>
+                                    <select id="materialAmount"  name="materialAmount" class="form-control form-horizontal input-sm">
+                                        <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
-                                        <option value="6">6</option>
+                                        <option  selected="selected"  value="6">6</option>
                                     </select>
                             </div>
+                         </div>
+                        <div class="col-md-6" style="margin: inherit;">
+                            <div class="form-group custom-form" style="margin: inherit;">
+                                <label>Shoddy</label>
+                                    <input type="text" name="Shoddy" class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"">
+                        <div class="col-md-4" style="margin: inherit;">
+                            <div class="form-group custom-form">
+                                <label>Glue meters</label>
+                                    <input type="text" name="GlueMeters" class="form-control input-sm">
+                            </div>
+                            <div class="form-group custom-form">
+                                <label> <input type="checkbox" id="bagging" class="checkbox-inline">Bagging meters</label>
+                                    <input type="text" id="baggingLength" name="baggingLength" class="form-control input-sm">
+                            </div>
+                            <div class="form-group custom-form">
+                                <label><input type="checkbox" id="boxing"  class="checkbox-inline"> Boxing price </label>
+                                     <input type="text" id="boxingPrice" name="boxingPrice" class="form-control input-sm">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-6">
+                                <div class="form-group custom-form">
+                                    <label>Designing hours</label>
+                                    <input type="text" name="DesignHours" class="form-control col-md-1 input-sm">
+                                </div>
+                                <div class="form-group custom-form">
+                                    <label>Run cost hours</label>
+                                    <input type="text" name="RunHours" class="form-control input-sm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group custom-form">
+                                    <label>Pieces per pallet</label>
+                                    <input type="text" name="PiecesPerPallet" class="form-control input-sm">
+                                </div>
+                                <div class="form-group custom-form">
+                                    <label>Pallet cost</label>
+                                    <input type="text" name="PalletCost" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-md-12 form-horizontal">
                     <label class="page-header" style="font-size: large; margin:5px;"> Υλικά </label>

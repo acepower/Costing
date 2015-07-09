@@ -14,7 +14,7 @@ class loginController{
     private $loginPage;
     private $m_f3;
 
-    public function __construct($f3,$validationError)
+    public function __construct($f3)
     {
         session_start();
         $this->loginPage= new loginView();
@@ -62,10 +62,14 @@ class loginController{
             if(sessionClass::get('Username')!= false) {
                 $this->m_f3->reroute('/invoicing');
             }
+            else{
+                sessionClass::set('ValidationError',"Incorrect Username or Password");
+                $this->m_f3->reroute('/login');
+            }
         }
         else{
             sessionClass::set('ValidationError',$this->m_f3->get('ValidationError'));
-            $this->m_f3->reroute('/login?');
+            $this->m_f3->reroute('/login');
         }
 
     }

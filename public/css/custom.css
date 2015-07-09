@@ -1,9 +1,8 @@
 .footer
 {
-    position:absolute;
+    position:relative;
     bottom:0;
     width:100%;
-
 
 }
 .custom-form
@@ -42,4 +41,21 @@
 .success
 {
     outline: 1px outset greenyellow;
+}
+
+.title
+{
+
+    float:right;
+    margin-top: 5px;
+    font-family: "Helvetica Neue";
+    font-size: x-large;
+    letter-spacing: 2px;
+    color: gold;
+
+}
+.box
+{
+    /*border-color: #0f30ac;*/
+    /*border-style: groove;*/
 }

@@ -44,7 +44,7 @@ class funcValidator
             }
             return self::$not_pass;
         }
-        if(strcmp($string1,$string2)==0){
+        else{
             switch($category) {
                 case 0: return self::$pass; break;//passwords are the same
                 case 1: $f3->set('ValidationError', "Username already in use"); break;
@@ -54,6 +54,5 @@ class funcValidator
             return self::$not_pass;
         }
 
-        return self::$pass;
     }
 }

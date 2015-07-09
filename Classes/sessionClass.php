@@ -39,4 +39,14 @@ class SessionClass
 
         return false;
     }
+    public static function clear($id)
+    {
+        if(session_id()!=null){
+            if(isset($_SESSION[$id])){
+                unset($_SESSION[$id]);
+                return true;
+            }
+        }
+        return false;
+    }
 }

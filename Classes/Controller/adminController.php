@@ -15,6 +15,7 @@ class AdminController
         $this->postData = array();
         session_start();
         if(sessionClass::get('Username')== false || loginModel::checkAdmin()== false) {
+            sessionClass::set('ValidationError','Restricted access');
             $f3->reroute('/login');
         }
         if (($_POST)) {

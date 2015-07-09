@@ -10,6 +10,7 @@ class HomeController
 {
     public function __construct($f3){
         session_start();
+        //security vulnerability
         if(sessionClass::get('Username')!= false) {
             $f3->reroute('/invoicing');
         }
@@ -18,7 +19,6 @@ class HomeController
             session_destroy();
         }
     }
-
     /**
      * creates and displays the home page
      */

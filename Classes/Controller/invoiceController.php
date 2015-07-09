@@ -11,20 +11,23 @@ class InvoiceController
 
     private $invoicePage;
     private $postData;
+    private $m_f3;
 
     public function __construct($f3)
     {
         session_start();
         session_regenerate_id();
+        $this->m_f3 = $f3;
         $this->postData = array();
-        if (sessionClass::get('Username') == false) {
-            $f3->reroute('/login');
-            exit();
+        if (!sessionClass::get('Username')) {
+            sessionClass::set('ValidationError','You need to be logged in to access that content');
+            $this->m_f3->reroute('/login');
         }
-        if (isset($_POST["invoice"])) {
-            if ($this->validatePostData()) {
+        if ($this->m_f3->exists('POST.invoice')){
+            var_dump($_POST);
+          if ($this->validatePostData()) {
                 $this->organizePostData();
-            }
+          }
         }
     }
 
@@ -34,7 +37,8 @@ class InvoiceController
         echo $this->invoicePage;
     }
 
-    private function validatePostData(){
+    public function validatePostData(){
+
 
         $flag = true;
         $piecesQuantity = array("Pieces1" => 1, "Pieces2" => 2, "Pieces3" => 3, "Pieces4" => 4, "Shoddy" => 5);
@@ -45,6 +49,7 @@ class InvoiceController
         }
         foreach ($_POST as $key => $value) {
             if (array_key_exists($key, $piecesQuantity)) {
+                //convert to integer
                 $value += 0;
                 if (!is_integer($value)) {
                     $error = "Quantity of pieces must be integer";
@@ -58,6 +63,7 @@ class InvoiceController
             } else {
                 if ($key == "Customer" || $key == "Product" || $key == "Seller") {
                     if (!ctype_alpha($value)) {
+                        var_dump($value);
                         $flag = false;
                         $error = "Only Customer and Product input can take alphabetical characters";
                         $this->displayError($error);

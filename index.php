@@ -18,5 +18,4 @@ function myAutoloader($className){
 spl_autoload_register('myAutoloader');
 
 $f3->config('classes/routes.ini');
-
 $f3->run();

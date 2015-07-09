@@ -52,7 +52,7 @@ HTML;
     {
         if (loginModel::checkAdmin() && !is_a($this, 'adminView')) {
             $admin = <<< HTML
-             <form style="float:right; position: relative; right:1%; margin: 5px;" action="/Costing/admin" method="get">
+             <form style="float:left; position: relative; left:1%; margin: 5px;" action="/Costing/admin" method="get">
                      <button type="submit" class="btn btn-success">Admin Mode</button>
                 </form>
 HTML;
@@ -79,7 +79,7 @@ HTML;
 	                 <title>Κοστολόγηση παραγγελιών ψηφιακής μηχανής</title>
 	                </head>
 	            <body>
-	            <div class="row header"> $logout $admin </div>
+	            <div class="row header"><div class="col-md-4">$logout  $admin</div> <div class="col-md-2 title">VIOKYT S.A.</div> </div>
 	            <script type="text/javascript" src="/Costing/public/js/bootstrap.min.js"></script>
 	            <script type="text/javascript" src="/Costing/public/js/jquery-1.11.1.js"></script>
 HTML;
@@ -95,6 +95,8 @@ HTML;
 HTML;
         $this->htmlOutput .= $this->pageFooter;
     }
+
+
 
     protected function createContent()
     {

@@ -109,6 +109,10 @@ $(function(){
                 '</select></div>'+
 
                 '</div>');
+        //<div class="form-group custom-form">
+        //<label>Gluing minutes per piece</label>
+        //<input type="text" name="GluingMinutesPerPiece" class="form-control input-sm">
+        //</div>
         }
 
         $('.checkbox-inline').on("click",function(){
