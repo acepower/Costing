@@ -89,7 +89,7 @@ HTML;
     protected final function createFooter()
     {
         $this->pageFooter = <<< HTML
-        <div class="panel-footer footer"><div class="text-left" style="font-size: medium; font-style: oblique; color: #ffffff;"> Developed by Konstantinos Daskalopoulos.<br/> Copyright @ 2014. All rights reserved.</div></div>
+        <div class="panel-footer footer"><div class="text-left" style="font-size: medium; font-style: oblique; color: #ffffff;"> Developed by ACEEEPOOWWAAA<br/> https://github.com/acepower</div></div>
                             </body>
                             </html>
 HTML;

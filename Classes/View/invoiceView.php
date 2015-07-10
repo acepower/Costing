@@ -26,6 +26,7 @@ class InvoiceView extends WebTemplate
                  <form id="orderCreation" class="form-horizontal " role="form" action="/Costing/invoicing" method="post">
                  <input type="hidden" name="invoice" value="postAttempt">
                     <div class="col-md-2">
+                    <label style="font-size: x-large">Order context</label>
                         <div class="form-group   custom-form" id="Invoicing">
                             <label>Salesperson</label>
                                  <input type="text" name="Seller" class="form-control input-sm ">
@@ -41,7 +42,8 @@ class InvoiceView extends WebTemplate
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4 box" style="margin-bottom:3.5px;">
+                        <label style="font-size: x-large">Order details</label>
                             <div class="form-group custom-form" style="margin-left: 2px;">
                                 <label style="margin-left: 15px;">Amount of product pieces to calculate the cost for</label>
                                     <div class="col-md-6" style="margin:inherit">
